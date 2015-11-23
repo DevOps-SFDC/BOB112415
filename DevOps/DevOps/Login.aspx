@@ -148,6 +148,8 @@
             <span class="loginTitle">
                 DevOps Battle of the Brains
             </span>
+
+                <span class="center-block" style="color: rgba(255, 255, 255, 0.98); font-size: 20px; text-align: center;">If You're already registered in Day 1 you can login Directly</span>
         </div>
         <div class="loginBodyWrapper" style="vertical-align: central">
 
@@ -245,6 +247,7 @@
                 <span style="margin-left: 1%; margin-top: 400px;">Ready to Take
                     <br />
                     &nbsp;the Challenge?</span>
+
             </div>
 
         </div>
@@ -257,7 +260,7 @@
         $(document).ready(function () {
 
           if ('<%: Session["lanid"] %>' != '') {
-                window.location.href = "/Default.aspx";
+              document.getElementById("txtUserName").value = '<%: Session["lanid"] %>';
 
             }
 

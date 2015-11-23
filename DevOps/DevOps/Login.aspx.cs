@@ -126,7 +126,8 @@ namespace DevOps
 
                             Session["errMSG"] = "Something Went Wrong";
                             Response.Redirect("~/Login.aspx");
-
+                            Response.Cookies["lanid"].Expires = DateTime.Now.AddHours(-1);
+                            Response.Cookies["Type"].Expires = DateTime.Now.AddHours(-1);
 
                         }
                         else
@@ -140,6 +141,7 @@ namespace DevOps
                                 Session["lanid"] = drow["EID"].ToString();
                                 Response.Redirect("~/Default.aspx");
                                 Response.Cookies["lanid"].Expires = DateTime.Now.AddHours(1);
+                                Response.Cookies["Type"].Expires = DateTime.Now.AddHours(1);
                                 //Response.Cookies["lanid"].Value = txtUserName.Text.Trim();
 
 
@@ -157,6 +159,8 @@ namespace DevOps
                 {
                     malingmensahe.ForeColor = System.Drawing.Color.Red;
                     malingmensahe.Text = "You are not yet Registered";
+                    Response.Cookies["lanid"].Expires = DateTime.Now.AddHours(-1);
+                    Response.Cookies["Type"].Expires = DateTime.Now.AddHours(-1);
                     //Response.Redirect("~/Login.aspx");
                     //malingmensahe.ForeColor = System.Drawing.Color.Red;
                     //malingmensahe.Text = "Invalid EID";

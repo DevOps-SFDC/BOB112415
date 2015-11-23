@@ -160,30 +160,30 @@
                                 <a id="AdminPanel" runat="server" href="#" style="color: #FFF; display:none;" ><i class="fa fa-user fa-fw"></i> Administrator Panel<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="<%: ResolveUrl("~/AdminPanel/Adminmgmt.aspx") %>" style="color: #FFF"><i class="glyphicon glyphicon-user"></i> Make a User Admin</a>
+                                        <a href="<%: ResolveUrl("~/AdminPanel/Adminmgmt.aspx") %>" style="color: #FFF; display:none;" id="admgmt"><i class="glyphicon glyphicon-user"></i> Make a User Admin</a>
                                     </li>
                                     <li>
-                                        <a href="<%: ResolveUrl("~/AdminPanel/Activitymgmt.aspx") %>" style="color: #FFF"><i class="glyphicon glyphicon-book"></i> Activity Management</a>
+                                        <a href="<%: ResolveUrl("~/AdminPanel/Activitymgmt.aspx") %>" style="color: #FFF; display:none;" id="actmgmt"><i class="glyphicon glyphicon-book"></i> Activity Management</a>
                                     </li>
 
                                     <li>
-                                        <a href="#" style="color: #FFF"><i class="fa fa-calendar fa-fw"></i>Questionaires<span class="fa arrow"></span></a>
+                                        <a href="#" style="color: #FFF; display:none;" id="qst"><i class="fa fa-calendar fa-fw"></i>Questionaires<span class="fa arrow"></span></a>
                                         <ul class="nav nav-third-level">
                                             <li>
-                                                <a href="<%: ResolveUrl("~/Questionaire/Questionaire.aspx") %>" style="color: #FFF"><i class="fa fa-clock-o fa-fw"></i> Add Questionaire</a>
+                                                <a href="<%: ResolveUrl("~/Questionaire/Questionaire.aspx") %>" style="color: #FFF; display:none;" id="questi"><i class="fa fa-clock-o fa-fw"></i> Add Questionaire</a>
                                             </li>
                                             <li>
-                                                <a href="<%: ResolveUrl("~/Logs/Logs.aspx") %>" style="color: #FFF"><i class="fa fa-list fa-fw"></i> Question Logs</a>
+                                                <a href="<%: ResolveUrl("~/Logs/Logs.aspx") %>" style="color: #FFF; display:none;" id="logsie"><i class="fa fa-list fa-fw"></i> Question Logs</a>
                                             </li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
                             <li class="questionLauncher" id="QuestionLauncher" style="display:none;">
-                                <a href="<%: ResolveUrl("~/ScriptBee/AdminSB.aspx") %>" style="color: #FFF"><i class="fa fa-question-circle fa-fw"></i> Question Launcher</a>
+                                <a href="<%: ResolveUrl("~/ScriptBee/AdminSB.aspx") %>" style="color: #FFF; display:none;" id="adsb"><i class="fa fa-question-circle fa-fw"></i> Question Launcher</a>
                              </li>
                             <li class="scriptBee" id="BattleoftheBrains" style="display:none;">
-                                <a href="<%: ResolveUrl("~/ScriptBee/UserSB.aspx") %>" style="color: #FFF"><i class="fa fa-puzzle-piece fa-fw"></i> Quiz Bee</a>
+                                <a href="<%: ResolveUrl("~/ScriptBee/UserSB.aspx") %>" style="color: #FFF; display:none;" id="usb"><i class="fa fa-puzzle-piece fa-fw"></i> Quiz Bee</a>
                             </li>
                             <li class="aboutpanel">
                                 
@@ -243,12 +243,28 @@
                 $('#AdminPanel').hide();
                 $('#QuestionLauncher').hide();
                 $('#BattleoftheBrains').show()
+
+                $('#usb').show()
+                $('#admgmt').hide();
+                $('#actmgmt').hide();
+                $('#qst').hide();
+                $('#questi').hide();
+                $('#logsie').hide();
+                $('#adsb').hide();
                 //window.location.href = "/About/CalendarActivity.aspx";
             }
             else if ('<%: Session["Type"]%>' == 'Administrator') {
                 $('#AdminPanel').show();
                 $('#QuestionLauncher').show();
                 $('#BattleoftheBrains').hide()
+
+                $('#usb').hide()
+                $('#admgmt').show();
+                $('#actmgmt').show();
+                $('#qst').show();
+                $('#questi').show();
+                $('#logsie').show();
+                $('#adsb').show();
             }
             else if ('<%: Session["Type"]%>' == '') {
                 alert('You are not Authorized to use this Tool!..');
