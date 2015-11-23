@@ -724,6 +724,14 @@ namespace DevOps.SystemObjects
             oParam.AddWithValue("@eid", _eid);
             return dt = this.FGetDataTable(@"SBLoadSCore", oParam);
         }
+
+        public DataTable DisconnectUser()
+        {
+            DataTable dt = new DataTable();
+            var oParam = new SqlCommand().Parameters;
+            oParam.AddWithValue("@eid", _eid);
+            return dt = this.FGetDataTable(@"SBDCUser", oParam);
+        }
         #endregion
 
 

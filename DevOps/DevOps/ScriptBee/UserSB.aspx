@@ -357,7 +357,7 @@
 
                            //alert($(this).find("Answer").text());
                            if ($(this).find("Answer").text() == 'UserSB') {
-                               alert('A Quiz Bee Page is already open in one of your browser \nPlease check your browser!..');
+                               alert('A Quiz Bee Page is already open in one of your browser \nPlease check your browser!..\nIf the Problem still exists kindly ping\nPaolo.t.lambojon');
                                window.location.href = "/Default.aspx";
                            }
                            else if ($(this).find("Answer").text() == 'UserSB2'){
@@ -369,7 +369,7 @@
                                $('#answer3').disableSelection();
                                $('#answer4').disableSelection();
                                CheckQuizStatus();
-                               setInterval(CheckdbifnotAnsweredd, 500);
+                               //setInterval(CheckdbifnotAnsweredd, 500);
                                blinkeffect('#blink');
                                LoadSCore();
 
@@ -610,7 +610,7 @@
                    $.each(exkeys, function () {
                        refreshquestionform();
                        validatequestion();
-                       setInterval(LoadQuestdummyid, 500);
+                       //setInterval(LoadQuestdummyid, 500);
                        UpdateQuizbeeStatusI();
                        if (CRA == 'Correct') {
                            $('#timer').text('00');
@@ -904,6 +904,25 @@
                                $('#myModalLabel1').text('Ooopps ! Better Luck next Time!');
                                //$('#gtra').text('You Choose the Wrong Answer');
                                $('#gtra').text('Your answer is incorrect! ');
+                               $('#meid2').text('');
+                               CRA = 'Incorrect';
+                               LoadSCore();
+                           }
+                           else if ($(this).find("Answer").text() == 'AlreadyAnswered') {
+                               $('#answer1').unbind('click');
+                               $('#answer1').unbind('dblclick');
+                               $('#answer2').unbind('click');
+                               $('#answer2').unbind('dblclick');
+                               $('#answer3').unbind('click');
+                               $('#answer3').unbind('dblclick');
+                               $('#answer4').unbind('click');
+                               $('#answer4').unbind('dblclick');
+
+                               $('#notification').modal('show');
+                               $('#meid1').text('');
+                               $('#myModalLabel1').text('Ooopps ! You have already answered this Question!');
+                               //$('#gtra').text('You Choose the Wrong Answer');
+                               $('#gtra').text('You have already answered this Question! ');
                                $('#meid2').text('');
                                CRA = 'Incorrect';
                                LoadSCore();

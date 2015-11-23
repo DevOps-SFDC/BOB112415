@@ -215,6 +215,7 @@
                                         <thead>
                                             <tr>
                                                 <th style="text-align:center;">EID</th>
+                                                <th style="text-align:center;">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -245,7 +246,7 @@
         prm.add_initializeRequest(initializer);
         prm.add_endRequest(ender);
         prm.add_pageLoaded(loader);
-
+        var dcuser;
         function initializer(sender, args) {
 
         }
@@ -264,7 +265,7 @@
                     $('#questionid').val(0);
                     DisplayQuestionaires();
                     refreshquestionform()
-                    setInterval(CheckdbAnswered, 500);
+                    //setInterval(CheckdbAnswered, 500);
                     setInterval(CheckdbifnotAnsweredd, 500);
                     setInterval(AdminErrorChecker, 1000);
                     $('#overridenullpoint').prop("disabled", true);
@@ -527,9 +528,14 @@
                         var row = '<tr></tr>';
                         var col = '<td style="text-align:center;">';
 
-                        col += $(this).find("EID").text() + '</td>';
+                        col += $(this).find("EID").text() + '</td> <td>';
+                        col += '<input id="eid" type="hidden" value="' + $(this).find("EID").text() + '"/> <a id="disconnect" class="disconnect" href="#" style="text-align: center;"><i class="glyphicon glyphicon-refresh"></i> Disconnect</a> </td>';
 
                         $("[id*=gridUsers] tbody").append($(row).append(col));
+                    })
+                    $('#disconnect').click(function () {
+                        dcuser = $(this).prev().val();
+                        DisconnectUser()
                     })
                     $('#gridUsers').dataTable();
 
@@ -539,6 +545,34 @@
                 failure: function AjaxFailure(response) { alert(response.status + ' ' + response.statusText); }
             });
         }
+
+
+        function DisconnectUser() {
+            var arr = new Array();
+            arr[0] = dcuser;
+
+            $.ajax({
+                type: "POST",
+                url: "AdminSB.aspx/disconnectUser",
+                data: JSON.stringify({ _arr: arr }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function AjaxSucceded(response) {
+                    var xmlDoc = $.parseXML(response.d);
+                    var xml = $(xmlDoc);
+                    var details = xml.find("Table1");
+                    $.each(details, function () {
+                        var metrics = $(this);
+                        //alert($(this).find("Answer").text());
+
+                    });
+
+                },
+                error: function AjaxError(response) { alert(response.status + ' ' + response.responseText); },
+                failure: function AjaxFailure(response) { response.status + ' ' + response.statusText; }
+            })
+        }
+
 
 
         function AdminErrorChecker() {

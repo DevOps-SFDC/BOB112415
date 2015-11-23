@@ -177,6 +177,26 @@ namespace DevOps.ScriptBee
             return _sbobj.OverrideNP();
         }
 
+        [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
+        public static string disconnectUser(List<string> _arr)
+        {
+            DataTable dummy = new DataTable();
+
+            SystemObjects.SBObj _sbobj = new SystemObjects.SBObj();
+            _sbobj.EID = _arr[0].ToString();
+            DataSet ds = new DataSet();
+            try
+            {
+                dummy.Merge(_sbobj.DisconnectUser());
+                ds.Tables.Add(dummy);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ds.GetXml();
+        }
+
 
     }
 }
